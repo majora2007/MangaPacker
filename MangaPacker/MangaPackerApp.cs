@@ -44,27 +44,32 @@ namespace MangaPacker
                     };
 
                     DirectoryInfo newDirectory = CreateTempVolumeFolder(di, mangaVolume);
+                    
                     if (!VolumeDirectories.Contains(newDirectory))
                     {
                         VolumeDirectories.Add(newDirectory);
                     }
+                    
                     Console.WriteLine($"New folder created: {newDirectory}");
                     CopyFilesOver(newDirectory, mangaVolume);
-                    var dest = Path.Join(path, newDirectory.Name + ".cbz");
-                    if (!File.Exists(dest))
-                    {
-                        ZipFile.CreateFromDirectory(newDirectory.ToString(), dest);    
-                    }
-                    // Delete temp directory
-                    Directory.Delete(newDirectory.ToString());
                     
-
+                    
                 }
                 else
                 {
                     Console.WriteLine("Could not extract volume");
                 }
-                
+            }
+
+            foreach (var directory in VolumeDirectories)
+            {
+                var dest = Path.Join(path, directory.Name + ".cbz");
+                if (!File.Exists(dest))
+                {
+                    ZipFile.CreateFromDirectory(directory.ToString(), dest);    
+                }
+                // Delete temp directory
+                //Directory.Delete(directory.ToString());
                 
             }
         }
@@ -86,9 +91,10 @@ namespace MangaPacker
                     $"{mangaVolume.Series} - v{mangaVolume.Volume} - {chapterString} - pg. {filename}";
                 var extension = Path.GetExtension(fileInfo.ToString());
 
-                if (!File.Exists(newName + extension))
+                var fullPath = Path.Join(newDirectory.ToString(), newName + extension);
+                if (!File.Exists(fullPath))
                 {
-                    fileInfo.CopyTo(Path.Join(newDirectory.ToString(), newName + extension));    
+                    fileInfo.CopyTo(fullPath);    
                 }
             }
         }
