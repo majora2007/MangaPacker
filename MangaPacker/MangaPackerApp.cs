@@ -55,6 +55,8 @@ namespace MangaPacker
                     {
                         ZipFile.CreateFromDirectory(newDirectory.ToString(), dest);    
                     }
+                    // Delete temp directory
+                    Directory.Delete(newDirectory.ToString());
                     
 
                 }

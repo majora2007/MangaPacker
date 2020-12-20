@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06bde728-f9a3-40f9-86a0-cdcefc224df5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker.sln.DotSettings.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker/MangaPacker.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker/MangaVolume.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker/Parser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPacker/Scanner.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaParser.Tests/MangaParser.Tests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaParser.Tests/ParserTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPicker.Tests/MangaPicker.Tests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPicker.Tests/Parser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MangaPicker.Tests/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -78,6 +58,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="RiderTestRunnerUnitTestingPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -111,8 +92,16 @@
       <updated>1608228049699</updated>
       <workItem from="1608228072490" duration="1474000" />
       <workItem from="1608243553212" duration="9069000" />
-      <workItem from="1608407939482" duration="10924000" />
+      <workItem from="1608407939482" duration="11625000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit. Ability to pack cbz files.">
+      <created>1608488589626</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608488589626</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
