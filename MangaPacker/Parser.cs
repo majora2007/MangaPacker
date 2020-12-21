@@ -23,8 +23,7 @@ namespace MangaPacker
                 
                 @"(?<Series>.*)(\b|_)v(?<Volume>\d+-?\d+)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex(
-                
+            new Regex(   
                 @"(?:v)(?<Volume>0*[1-9]+)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
             
