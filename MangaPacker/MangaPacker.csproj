@@ -10,4 +10,8 @@
       <None Remove="README.md" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="CoenM.ImageSharp.ImageHash" Version="1.0.0" />
+    </ItemGroup>
+
 </Project>

@@ -23,4 +23,8 @@
       <ProjectReference Include="..\MangaPacker\MangaPacker.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Test Data" />
+    </ItemGroup>
+
 </Project>

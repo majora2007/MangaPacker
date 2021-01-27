@@ -2,5 +2,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=102096b8_002D98ac_002D44ea_002D9103_002D46a9bbfa88a0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ParseVolumeTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.AdvertDetectorTests.IsAdvertTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

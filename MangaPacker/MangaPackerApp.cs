@@ -2,28 +2,34 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using MangaPacker.Images;
 
 namespace MangaPacker
 {
     public class MangaPackerApp
     {
+        private readonly string _path;
         private ICollection<DirectoryInfo> VolumeDirectories { get; set; }
+        private AdvertDetector _advertDetector;
         
         
-        public MangaPackerApp()
+        public MangaPackerApp(string path)
         {
+            _path = path;
             VolumeDirectories = new List<DirectoryInfo>();
+            _advertDetector = new AdvertDetector(Path.Join(_path, "adverts"));
         }
 
-        public void Scan(string path)
+        public void Scan()
         {
             var searchPattern = "*";
-            DirectoryInfo di = new DirectoryInfo(path);
+            DirectoryInfo di = new DirectoryInfo(_path);
             DirectoryInfo[] directories =
                 di.GetDirectories(searchPattern, SearchOption.TopDirectoryOnly);
 
             foreach (var dir in directories)
             {
+                if (dir.Name == "adverts") continue;
                 Console.WriteLine($"Found directory {dir}");
                 
                 // Determine if this is a valid folder for packing
@@ -62,7 +68,7 @@ namespace MangaPacker
 
             foreach (var directory in VolumeDirectories)
             {
-                var dest = Path.Join(path, directory.Name + ".cbz");
+                var dest = Path.Join(_path, directory.Name + ".cbz");
                 if (!File.Exists(dest))
                 {
                     ZipFile.CreateFromDirectory(directory.ToString(), dest);    
@@ -83,6 +89,11 @@ namespace MangaPacker
         {
             foreach (var fileInfo in mangaVolume.Files)
             {
+                if (_advertDetector.IsAdvert(fileInfo.FullName))
+                {
+                    Console.WriteLine($"{fileInfo.FullName} is an advert. Skipping!");
+                    continue;
+                }
                 var filename = Path.GetFileNameWithoutExtension(fileInfo.ToString());
                 var chapterString = mangaVolume.Chapters != String.Empty ? "ch. " + Parser.PadZeros(mangaVolume.Chapters) : "";
                 
@@ -121,10 +132,6 @@ namespace MangaPacker
             // TODO: We need to handle nested folders for packing
             return directory.GetFiles("*", SearchOption.TopDirectoryOnly);
         }
-
-        private bool HasImages(DirectoryInfo directory)
-        {
-            return false;
-        }
+        
     }
 }

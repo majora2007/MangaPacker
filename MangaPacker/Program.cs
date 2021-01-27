@@ -14,8 +14,8 @@ namespace MangaPacker
             }
             else
             {
-                MangaPackerApp app = new MangaPackerApp();
-                app.Scan(args[0]);
+                MangaPackerApp app = new MangaPackerApp(args[0]);
+                app.Scan();
             }
         }
     }
