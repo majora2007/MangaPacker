@@ -6,54 +6,88 @@ namespace MangaPacker
 {
     public static class Parser
     {
-        //?: is a non-capturing group in C#, else anything in () will be a group
         private static readonly Regex[] MangaVolumeRegex = new[]
         {
-            // Historys Strongest Disciple Kenichi_v11_c90-98.zip
+            // Dance in the Vampire Bund v16-17
             new Regex(
-                
-                @"(?<Series>.*)(\b|_)v(?<Volume>\d+)",
+                @"(?<Series>.*)(\b|_)v(?<Volume>\d+-?\d+)( |_)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Historys Strongest Disciple Kenichi_v11_c90-98.zip or Dance in the Vampire Bund v16-17
+            new Regex(
+                @"(?<Series>.*)(\b|_)v(?<Volume>\d+-?\d*)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
             // Killing Bites Vol. 0001 Ch. 0001 - Galactica Scanlations (gb)
             new Regex(
-                @"(vol. ?)(?<Volume>0*[1-9]+)",
+                @"(vol\.? ?)(?<Volume>0*[1-9]+)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            // Dance in the Vampire Bund v16-17
+            // Tonikaku Cawaii [Volume 11].cbz
             new Regex(
-                
-                @"(?<Series>.*)(\b|_)v(?<Volume>\d+-?\d+)",
+                @"(volume )(?<Volume>0?[1-9]+)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
+
+            // Tower Of God S01 014 (CBT) (digital).cbz
             new Regex(   
-                @"(?:v)(?<Volume>0*[1-9]+)",
+                @"(?<Series>.*)(\b|_|)(S(?<Volume>\d+))",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
             
         };
 
         private static readonly Regex[] MangaSeriesRegex = new[]
         {
+            // Ichiban_Ushiro_no_Daimaou_v04_ch34_[VISCANS].zip
+            new Regex(
+            @"(?<Series>.*)(\b|_)v(?<Volume>\d+-?\d*)( |_)",
+            RegexOptions.IgnoreCase | RegexOptions.Compiled),
             // Gokukoku no Brynhildr - c001-008 (v01) [TrinityBAKumA], Black Bullet - v4 c17 [batoto]
             new Regex(
-                
                 @"(?<Series>.*)( - )(?:v|vo|c)\d",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
             // Historys Strongest Disciple Kenichi_v11_c90-98.zip, Killing Bites Vol. 0001 Ch. 0001 - Galactica Scanlations (gb)
             new Regex(
-                
-                @"(?<Series>.*)(\b|_)v",
+                @"(?<Series>.*) (\b|_|-)v",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            
-            // Black Bullet
+            //Tonikaku Cawaii [Volume 11], Darling in the FranXX - Volume 01.cbz
             new Regex(
-                
-                @"(?<Series>.*)(\b|_)(v|vo|c)",
+                @"(?<Series>.*)(?: _|-|\[|\() ?v",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            
-            // [BAA]_Darker_than_Black_c1 (This is very greedy, make sure it's always last)
+            //Knights of Sidonia c000 (S2 LE BD Omake - BLAME!) [Habanero Scans]
             new Regex(
-                @"(?<Series>.*)(\b|_)(c)",
+                @"(?<Series>.*)(\bc\d+\b)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            
-            
+            //Ichinensei_ni_Nacchattara_v01_ch01_[Taruby]_v1.1.zip must be before [Suihei Kiki]_Kasumi_Otoko_no_Ko_[Taruby]_v1.1.zip
+            // due to duplicate version identifiers in file.
+            new Regex(
+                @"(?<Series>.*)(v|s)\d+(-\d+)?(_| )",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            //[Suihei Kiki]_Kasumi_Otoko_no_Ko_[Taruby]_v1.1.zip
+            new Regex(
+                @"(?<Series>.*)(v|s)\d+(-\d+)?",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Hinowa ga CRUSH! 018 (2019) (Digital) (LuCaZ).cbz
+            new Regex(
+                @"(?<Series>.*) (?<Chapter>\d+) (?:\(\d{4}\)) ", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Kedouin Makoto - Corpse Party Musume, Chapter 19 [Dametrans].zip
+            new Regex(
+                @"(?<Series>.*)(?:, Chapter )(?<Chapter>\d+)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Akame ga KILL! ZERO (2016-2019) (Digital) (LuCaZ)
+            new Regex(
+                @"(?<Series>.*)\(\d",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+
+            // Black Bullet (This is very loose, keep towards bottom) (?<Series>.*)(_)(v|vo|c|volume)
+            new Regex(
+                @"(?<Series>.*)(_)(v|vo|c|volume)( |_)\d+",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Akiiro Bousou Biyori - 01.jpg, Beelzebub_172_RHS.zip, Cynthia the Mission 29.rar
+            new Regex(
+                @"^(?!Vol)(?<Series>.*)( |_)(\d+)", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // [BAA]_Darker_than_Black_c1 (This is very greedy, make sure it's close to last)
+            new Regex(
+                @"(?<Series>.*)( |_)(c)\d+",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
         };
 
         private static readonly Regex[] ReleaseGroupRegex = new[]
@@ -68,9 +102,58 @@ namespace MangaPacker
 
         private static readonly Regex[] MangaChapterRegex = new[]
         {
+            //Black Bullet - v4 c20.5 [batoto].zip
+            new Regex(@"(c(?:h|hapter\.? ?)?\.? ?)(?<Chapter>\d+\.?\d{1}(?:-\d+)?)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
             new Regex(
-
                 @"(c|ch)(\.? ?)(?<Chapter>\d+-?\d*)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // [Suihei Kiki]_Kasumi_Otoko_no_Ko_[Taruby]_v1.1.zip
+            new Regex(
+                @"v\d+\.(?<Chapter>\d+-?\d*)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Hinowa ga CRUSH! 018 (2019) (Digital) (LuCaZ).cbz
+            new Regex(
+                @"(?<Series>.*) (?<Chapter>\d+) (?:\(\d{4}\))", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Tower Of God S01 014 (CBT) (digital).cbz
+            new Regex(
+                @"(?<Series>.*) S(?<Volume>\d+) (?<Chapter>\d+)", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Beelzebub_01_[Noodles].zip
+            new Regex(
+                @"^((?!v|vo|vol|Volume).)*( |_)(?<Chapter>\.?\d+)( |_|\[|\()", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Yumekui-Merry_DKThias_Chapter21.zip
+            new Regex(
+                @"Chapter(?<Chapter>\d+(-\d+)?)", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            
+        };
+        private static readonly Regex[] MangaEditionRegex = {
+            //Tenjo Tenge {Full Contact Edition} v01 (2011) (Digital) (ASTC).cbz
+            new Regex(
+                @"(?<Edition>({|\(|\[).* Edition(}|\)|\]))", 
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            //Tenjo Tenge {Full Contact Edition} v01 (2011) (Digital) (ASTC).cbz
+            new Regex(
+                @"(\b|_)(?<Edition>Omnibus)(\b|_)",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+        };
+
+        private static readonly Regex[] CleanupRegex =
+        {
+            // (), {}, []
+            new Regex(
+                @"(?<Cleanup>(\{\}|\[\]|\(\)))",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // (Complete)
+            new Regex(
+                @"(?<Cleanup>(\{Complete\}|\[Complete\]|\(Complete\)))",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled),
+            // Anything in parenthesis
+            new Regex(
+                @"\(.*\)",
                 RegexOptions.IgnoreCase | RegexOptions.Compiled),
         };
         
@@ -88,8 +171,7 @@ namespace MangaPacker
                     
                 }
             }
-
-            Console.WriteLine("Unable to parse {0}", filename);
+            
             return "";
         }
 
@@ -100,27 +182,19 @@ namespace MangaPacker
                 var matches = regex.Matches(filename);
                 foreach (Match match in matches)
                 {
-                    if (match.Groups["Volume"] != Match.Empty)
-                    {
-                        var value = match.Groups["Volume"].Value;
-                        
-                        // I think we should put this logic elsewhere
-                        // if (value.Contains("-"))
-                        // {
-                        //     var tokens = value.Split("-");
-                        //     var from = Int32.Parse(tokens[0]);
-                        //     var to = Int32.Parse(tokens[1]);
-                        //     var delta = to - from;
-                        // }
-                        
-                        return RemoveLeadingZeroes(match.Groups["Volume"].Value);    
-                    }
+                    if (match.Groups["Volume"] == Match.Empty) continue;
                     
+                    var value = match.Groups["Volume"].Value;
+                    if (!value.Contains("-")) return RemoveLeadingZeroes(match.Groups["Volume"].Value);
+                    var tokens = value.Split("-");
+                    var from = RemoveLeadingZeroes(tokens[0]);
+                    var to = RemoveLeadingZeroes(tokens[1]);
+                    return $"{@from}-{to}";
+
                 }
             }
-
-            Console.WriteLine("Unable to parse {0}", filename);
-            return "";
+            
+            return "0";
         }
 
         public static string ParseChapter(string filename)
@@ -134,7 +208,6 @@ namespace MangaPacker
                     {
                         var value = match.Groups["Chapter"].Value;
 
-                        
                         if (value.Contains("-"))
                         {
                             var tokens = value.Split("-");
@@ -159,6 +232,19 @@ namespace MangaPacker
         /// <returns></returns>
         public static string CleanTitle(string title)
         {
+            title = RemoveReleaseGroup(title);
+
+            title = title.Replace("_", " ").Trim();
+            if (title.EndsWith("-"))
+            {
+                title = title.Substring(0, title.Length - 1);
+            }
+
+            return title.Trim();
+        }
+
+        private static string RemoveReleaseGroup(string title)
+        {
             foreach (var regex in ReleaseGroupRegex)
             {
                 var matches = regex.Matches(title);
@@ -171,8 +257,7 @@ namespace MangaPacker
                 }
             }
 
-            title = title.Replace("_", " ");
-            return title.Trim();
+            return title;
         }
 
 
@@ -193,20 +278,22 @@ namespace MangaPacker
             return PerformPadding(number);
         }
 
-        private static string PerformPadding(string number)
+        public static string PerformPadding(string number)
         {
-            var num = Int32.Parse(number);
+            var tokens = number.Split(".");
+            var num = Int32.Parse(tokens[0]);
             return num switch
             {
-                < 10 => "00" + num,
-                < 100 => "0" + num,
+                < 10 => "00" + (tokens.Length > 1 ? num + "." + tokens[1] : num),
+                < 100 => "0" + (tokens.Length > 1 ? num + "." + tokens[1] : num),
                 _ => number
             };
         }
         
         public static string RemoveLeadingZeroes(string title)
         {
-            return title.TrimStart(new Char[] { '0' });
+            var ret = title.TrimStart(new[] { '0' });
+            return ret == string.Empty ? "0" : ret;
         }
     }
 }

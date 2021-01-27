@@ -1,11 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=102096b8_002D98ac_002D44ea_002D9103_002D46a9bbfa88a0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ParseVolumeTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests.ParseVolumeTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests.RemoveLeadingZeroes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests.CleanTitle&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests.ParseSeriesTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests.PadZeros&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests.ParseChaptersTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C135918D-CDC5-449E-932C-8E5301E587C2::net5.0::MangaParser.Tests.ParserTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

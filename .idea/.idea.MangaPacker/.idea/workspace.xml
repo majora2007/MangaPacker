@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06bde728-f9a3-40f9-86a0-cdcefc224df5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangaPacker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MangaPacker.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/MangaPacker.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MangaPacker/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MangaPacker/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MangaPacker/Scanner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MangaParser.Tests/ParserTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MangaParser.Tests/ParserTests.cs" afterDir="false" />
     </list>
     <disabled>
       <disabled_changelists>
@@ -21,9 +27,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/MangaPicker.Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MangaPicker.Tests/Parser.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MangaPicker.Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -32,16 +46,18 @@
       <option value="$PROJECT_DIR$/MangaPacker/Scanner.cs" />
       <option value="$PROJECT_DIR$/MangaParser.Tests/Parser.cs" />
       <option value="$PROJECT_DIR$/MangaPacker/MangaVolume.cs" />
-      <option value="$PROJECT_DIR$/MangaParser.Tests/ParserTests.cs" />
-      <option value="$PROJECT_DIR$/MangaPacker/Parser.cs" />
       <option value="$PROJECT_DIR$/MangaPacker/Program.cs" />
-      <option value="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" />
       <option value="$PROJECT_DIR$/MangaPacker/LICENSE" />
       <option value="$PROJECT_DIR$/MangaPacker/README.md" />
+      <option value="$PROJECT_DIR$/MangaPacker/Parser.cs" />
+      <option value="$PROJECT_DIR$/MangaParser.Tests/ParserTests.cs" />
+      <option value="$PROJECT_DIR$/MangaPacker/MangaPackerApp.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1lnLkJljBsLUE8y2RcA9xmvL2nz" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Remove" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,10 +80,10 @@
     <property name="settings.editor.selected.configurable" value="RiderTestRunnerUnitTestingPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.MangaPacker">
     <configuration name="MangaPacker" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/MangaPacker/bin/Debug/net5.0/MangaPacker.dll" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;C:\Users\Joe\Desktop\mangadex-scraper&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;C:\Users\Joe\Desktop\mangadex-scraper-master&quot;" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MangaPacker/bin/Debug/net5.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -83,6 +99,9 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Project.MangaPacker" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,6 +114,11 @@
       <workItem from="1608228072490" duration="1474000" />
       <workItem from="1608243553212" duration="9069000" />
       <workItem from="1608407939482" duration="15913000" />
+      <workItem from="1608575245207" duration="676000" />
+      <workItem from="1608961332815" duration="5100000" />
+      <workItem from="1609366283980" duration="1569000" />
+      <workItem from="1609716558198" duration="651000" />
+      <workItem from="1611756636261" duration="4746000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit. Ability to pack cbz files.">
       <created>1608488589626</created>
@@ -124,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608493392266</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Moved readme and license to correct directory">
+      <created>1608575317215</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608575317215</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

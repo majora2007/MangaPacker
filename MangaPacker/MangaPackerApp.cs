@@ -33,7 +33,7 @@ namespace MangaPacker
                 var chapter = Parser.ParseChapter(dirName);
                 
                 // TODO: Assume all in the same series for now, eventually add a Map to manage instances
-                if (volume.Length > 0 && series != String.Empty)
+                if (series != string.Empty && (volume != "0" || chapter != string.Empty))
                 {
                     MangaVolume mangaVolume = new MangaVolume
                     {
@@ -52,12 +52,11 @@ namespace MangaPacker
                     
                     Console.WriteLine($"New folder created: {newDirectory}");
                     CopyFilesOver(newDirectory, mangaVolume);
-                    
-                    
                 }
                 else
                 {
-                    Console.WriteLine("Could not extract volume");
+                    Console.WriteLine($"Could not extract enough information to process from {dirName}");
+                    Console.WriteLine($"Series: {series}, Volume: {volume}, Chapter: {chapter}");
                 }
             }
 
@@ -100,20 +99,26 @@ namespace MangaPacker
         }
 
         /// <summary>
-        /// Create a new folder called Series - Volume #001. This pads volume numbers.
+        /// Create a new folder called Series - Volume 001. This pads volume numbers.
         /// </summary>
         /// <param name="baseDir">Directory where to create new folder</param>
         /// <param name="mangaVolume">Information about the manga which we derive folder name from</param>
         /// <returns>Folder DirectoryInfo that (now) exists in baseDir. If already existing, will return that.</returns>
         private DirectoryInfo CreateTempVolumeFolder(DirectoryInfo baseDir, MangaVolume mangaVolume)
         {
-            var folderName = $"{mangaVolume.Series} - Volume #{Parser.PadZeros(mangaVolume.Volume)}";
+            var folderName = $"{mangaVolume.Series} - Volume {Parser.PadZeros(mangaVolume.Volume)}";
+            if (mangaVolume.Volume == "0")
+            {
+                folderName += $" - Chapter {Parser.PadZeros(mangaVolume.Chapters)}";
+            }
+            
             return Directory.CreateDirectory(Path.Combine(baseDir.ToString(), folderName));
         }
 
         
         private FileInfo[] GetFilesForDirectory(DirectoryInfo directory)
         {
+            // TODO: We need to handle nested folders for packing
             return directory.GetFiles("*", SearchOption.TopDirectoryOnly);
         }
 
